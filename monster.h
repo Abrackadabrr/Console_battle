@@ -17,7 +17,7 @@ public:
     int get_protection () const;
     int get_strength () const;
     string get_name() const;
-    bool check_alive ();                                    // жывой или  подох
+    bool ALIVE();                                           // жывой или  подох
 
     void set_damage(int damage);                            // получаем урон в размере damage
     void set_update_strength(int upd);                      // увеличивает атаку на upd

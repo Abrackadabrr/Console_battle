@@ -45,7 +45,7 @@ void monster::set_start_properties()
     this->update_of_damage = 0;
 }
 
-bool monster::check_alive()
+bool monster::ALIVE()
 {
     if (this->hp <= 0)
         alive = false;

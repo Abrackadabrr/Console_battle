@@ -46,7 +46,7 @@ void Player::set_start_properties()
 }
 
 
-bool Player::check_alive()
+bool Player::ALIVE()
 {
     if (this->hp <= 0)
         this->alive = false;
