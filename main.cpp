@@ -21,8 +21,8 @@ int main()
     std::cout << LABA.get_hp() << std::endl;
     std::cout << LABA.get_strength() << std::endl;
     std::cout << LABA.get_protection() << std::endl;
-    LABA.set_update_protection(10);
-    std::cout << LABA.get_protection() << std::endl;
+    LABA.set_update_strength(10);
+    std::cout << LABA.get_strength() << std::endl;
     LABA.set_damage(1000);
     if (!LABA.check_alive())
     {

@@ -1,10 +1,25 @@
-#include "Game_Creature.h"
-
-class monster: public Game_Creature
-{
+#include <string>
+using namespace  std;
+class monster {
 protected:
-    int winx;
+    int hp;
+    int protection;
+    int update_of_damage;                       // на сколько увеличивается защита при защите
+    int strength;
+
+    bool alive;
+    string name;
+    void set_start_properties();                               // восстанавливаем динамические параметры
+
 public:
     monster();
+    int get_hp () const;
+    int get_protection () const;
+    int get_strength () const;
+    string get_name() const;
+    bool check_alive ();                                    // жывой или  подох
+
+    void set_damage(int damage);                            // получаем урон в размере damage
+    void set_update_strength(int upd);                      // увеличивает атаку на upd
 };
 
