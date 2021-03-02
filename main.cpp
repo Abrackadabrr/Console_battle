@@ -4,6 +4,7 @@
 #include "Console_draw.h"
 
 int main() {
+
     Console_draw consoleDraw;
-    consoleDraw.print("hello");
+    consoleDraw.set_hello_hat();
 }

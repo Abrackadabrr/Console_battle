@@ -18,9 +18,22 @@ Console_draw::Console_draw()
         }
     }
     in.close();
+
+    start[0] = "hello";
+    start[1] = "hello";
+    start[2] = "hello";
+    start[3] = "hello";
+    start[4] = "hello";
 }
 
 void Console_draw::print(string name)
 {
     cout << this->massages.find(name)<<endl;
+}
+
+void Console_draw::set_hello_hat()
+{
+    for (int i = 0; i < 4; i++)
+        cout << this->massages.find("hello")<<endl;
+
 }

@@ -5,8 +5,10 @@ using namespace std;
 class Console_draw {
 private:
     listt massages;
+    string start[5];
 public:
 
     Console_draw();
     void print(string name);
+    void set_hello_hat();
 };
