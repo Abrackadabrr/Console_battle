@@ -1,0 +1,7 @@
+hello Dear friend, you are in the console battles, choose your player
+name3 massage3
+name4 massage4
+name5 massage5
+name6 massage6
+name7 massage7
+name8 massage8

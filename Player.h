@@ -22,4 +22,3 @@ public:
     void set_damage(int damage);                                // получаем урон в размере damage
     void set_update_protection(int upd);                        // увеличивает защиту на update_of_protection
 };
-

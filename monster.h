@@ -4,7 +4,7 @@ class monster {
 protected:
     int hp;
     int protection;
-    int update_of_damage;                       // на сколько увеличивается защита при защите
+    int update_of_damage;                       // на сколько увеличивается атака при атаке
     int strength;
 
     bool alive;
