@@ -1,24 +1,25 @@
 #include "Dice.h"
 #include <iostream>
 #include <time.h>
-
 using namespace std;
-int Dice::d3() {
-	srand(time(NULL));
-	return (rand() % 3 + 1);
+
+int Dice::roll() {
+    srand(time(NULL));
+    return (rand() % this->sides + 1);
 }
 
-int Dice::d6() {
-	srand(time(NULL));
-	return (rand() % 6 + 1);
+D3::D3() {
+    this->sides = 3;
 }
 
-int Dice::d10() {
-	srand(time(NULL));
-	return (rand() % 10 + 1);
+D6::D6() {
+    this->sides = 6;
 }
 
-int Dice::d20() {
-	srand(time(NULL));
-	return (rand() % 20 + 1);
+D10::D10() {
+    this->sides = 10;
+}
+
+D20::D20() {
+    this->sides = 20;
 }

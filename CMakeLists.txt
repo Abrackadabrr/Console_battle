@@ -15,4 +15,6 @@ add_executable(Console_battle
         Console_draw.h
         console.txt
         list_of_strings.cpp
-        list_of_strings.h)
+        list_of_strings.h
+        Dice.cpp
+        Dice.h)

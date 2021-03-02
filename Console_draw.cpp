@@ -2,6 +2,7 @@
 #include<string>
 #include <fstream>
 using namespace std;
+
 Console_draw::Console_draw()
 {
     string s;
@@ -40,6 +41,7 @@ void Console_draw::print(string name)
 
 void Console_draw::set_hello_hat()
 {
+    cout << endl;
     for(int i = 0; i < 3; i++){
         cout << this->massages.find(start[i])<<endl;
     }
@@ -47,6 +49,7 @@ void Console_draw::set_hello_hat()
 
 void Console_draw::set_player_type()
 {
+    cout << endl;
     for(int i = 0; i < 3; i++){
         cout << this->massages.find(players[i])<<endl;
     }
