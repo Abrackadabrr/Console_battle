@@ -34,7 +34,7 @@ Console_draw::Console_draw()
 
 }
 
-void Console_draw::print(string name)
+void Console_draw::print(string& name)
 {
     cout << this->massages.find(name)<<endl;
 }
@@ -53,4 +53,9 @@ void Console_draw::set_player_type()
     for(int i = 0; i < 3; i++){
         cout << this->massages.find(players[i])<<endl;
     }
+}
+
+void Console_draw::set_goodbye()
+{
+    cout << this->massages.find("выход")<<endl;
 }
