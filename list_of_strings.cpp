@@ -8,7 +8,7 @@ listt::listt ()
 bool listt:: push_back(string name,string massage)
 {
     uzzel** sfl = &(this -> start);
-    uzzel* tmp = new uzzel(name,massage);
+    uzzel* tmp = new uzzel(name, massage);
     while (*sfl != NULL)
     {
         sfl = &((*sfl)->next);

@@ -12,7 +12,7 @@ protected:
     void set_start_properties();
 
 public:
-    Player(string name);
+
     int get_hp () const;
     int get_protection () const;
     int get_strength () const;

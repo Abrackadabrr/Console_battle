@@ -1,17 +1,6 @@
 #include "Player.h"
 #include <iostream>
 using namespace std;
-Player::Player(string name)
-{
-    this->alive = true;
-    this->update_of_protection = 0;
-    this->name = name;
-    cout << "Your Player " << this->get_name() << " is created"<< endl;
-    hp = 1000;
-    protection = 100;
-    update_of_protection = 30;
-    strength = 100;
-}
 
 int Player:: get_hp() const
 {
