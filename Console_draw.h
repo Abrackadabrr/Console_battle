@@ -9,7 +9,8 @@ private:
     string players[3];
 public:
     Console_draw();
-    void print(string name);
+    void print(string& name);
     void set_hello_hat();
     void set_player_type();
+    void set_goodbye();
 };
