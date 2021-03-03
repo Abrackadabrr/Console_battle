@@ -2,9 +2,8 @@
 #include <iostream>
 #include <time.h>
 using namespace std;
-
+srand(time(NULL));
 int Dice::roll() {
-    srand(time(NULL));
     return (rand() % this->sides + 1);
 }
 
