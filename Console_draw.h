@@ -12,7 +12,7 @@ private:
     listt massages;
     string start[3];
     string info[3];
-    string console_commands[3];
+    string console_commands[2];
     ostream& os;
     istream& is;
 
@@ -39,5 +39,5 @@ public:
     string read_massage_about_player();
 
     bool drawback(DATA_BOX* data);
-
+    void is_end(DATA_BOX* data);
 };

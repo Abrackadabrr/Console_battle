@@ -30,7 +30,6 @@ Console_draw::Console_draw(ostream& os, istream& is): os(os), is(is)
 
     this->console_commands[0] = "справка по командам";
     this->console_commands[1] = "инфо";
-    this->console_commands[2] = "справка по героям";
 }
 
 void Console_draw::print(const string& name) const
@@ -53,7 +52,16 @@ void Console_draw::set_player_type() const
 }
 
 void Console_draw::set_cpravka() const{
-    this->print("справка по командам");
+    this->os << "Справка по комнадам и способностям для вашего героя" <<endl;
+    this->os << endl;
+    this->print("ЗАЩИТА");
+    this->print("АТАКА");
+    this->print("ИНФО");
+    this->print("СПРАВКА К");
+    for (int i = 0; i < player->get_amount_of_actions(); i ++)
+    {
+        if(player->warr) this->print("КРИТ УДАР");
+    }
 }
 
 void Console_draw::set_duel() const
@@ -68,12 +76,30 @@ void Console_draw::set_goodbye() const
 
 bool Console_draw::console_command()
 {
+    bool b = false;
     this->read();
-    for (int i = 0; i < 3; i ++) if (this->command == this->console_commands[i]) {
-        this->print(this->console_commands[i]);
-        return true;
+    for (int i = 0; i < 2; i ++) if (this->command == this->console_commands[i])
+    {
+        b = true;
+    }
+    if (b)
+    {
+        if (this->command == "инфо")
+        {
+            this->os << "Здоровье героя " << player->get_hp() << endl;
+            this->os << "Защита героя " << player->get_protection() << endl;
+            this->os << "Атака героя " << player->get_strength() << endl;
+            this->os << endl;
+            this->os << "Здоровье монстра " << monster->get_hp() << endl;
+            this->os << "Защита монстра " << monster->get_protection() << endl;
+            this->os << "Атака монстра " << monster->get_strength() << endl;
         }
-    return false;
+        if (this->command == "справка по командам")
+        {
+            this->set_cpravka();
+        }
+    }
+    return b;
 }
 
 void Console_draw::read()
@@ -194,4 +220,30 @@ bool Console_draw::drawback(DATA_BOX* data)
         }
     }
     return true;
+}
+
+void Console_draw::is_end(DATA_BOX* data)
+{
+    if (!data) return;
+    switch (data->event_type)
+    {
+        case (30): {
+            this->print("пор");
+            this->os << monster->get_hp() << endl;
+            delete data;
+            break;
+        }
+        case (31): {
+            this->print("поб");
+            this->os << monster->get_hp() << endl;
+            delete data;
+            break;
+        }
+        case (32): {
+            this->print("нич");
+            this->os << monster->get_hp() << endl;
+            delete data;
+            break;
+        }
+    }
 }

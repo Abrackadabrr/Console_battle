@@ -2,6 +2,14 @@
 #include <iostream>
 using namespace std;
 
+Player::Player()
+{
+    this->amount_of_actions = 1;
+}
+
+int Player::get_amount_of_actions() const
+{return this->amount_of_actions;}
+
 int Player:: get_hp() const
 {
     return (this->hp);

@@ -22,7 +22,7 @@ int main()
     {
         if (console.drawback(user.read_player_massage(console.read_massage()))) {
             console.drawback(user.monster_attack());
-            user.update();
+            console.is_end(user.update());
         }
     }
     console.set_goodbye();

@@ -13,7 +13,7 @@ public:
     ~UI();
     DATA_BOX* read_player_massage(string str); // берет и чекает сообщение, которое отправил игрок
     DATA_BOX* monster_attack();
-    void update(); // проверяем, умер кто то или нет (закончилась игра или нет)
+    DATA_BOX* update(); // проверяем, умер кто то или нет (закончилась игра или нет)
     int d3();
     int d20();
     class Player* create_player(string);

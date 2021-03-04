@@ -23,4 +23,6 @@ add_executable(Console_battle
         warrior.cpp
         warrior.h
         help_classes.cpp
-        help_classes.h)
+        help_classes.h
+        troll.cpp
+        troll.h)

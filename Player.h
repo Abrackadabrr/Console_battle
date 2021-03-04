@@ -5,6 +5,8 @@
 using namespace  std;
 class Player {
 protected:
+    int amount_of_actions;
+
     int hp;
     int protection;
     int update_of_protection;                       // на сколько увеличивается защита при защите
@@ -13,11 +15,16 @@ protected:
     bool alive;
     string name;
 
-public:
 
+
+public:
+    bool warr;
+
+    Player();
     int get_hp () const;
     int get_protection () const;
     int get_strength () const;
+    int get_amount_of_actions() const;
     string get_name() const;
     bool ALIVE();
     void set_start_properties();
