@@ -17,4 +17,9 @@ add_executable(Console_battle
         list_of_strings.cpp
         list_of_strings.h
         Dice.cpp
-        Dice.h)
+        Dice.h
+        dragon.cpp
+        dragon.h
+        UI.cpp
+        UI.h
+        random.cpp)
