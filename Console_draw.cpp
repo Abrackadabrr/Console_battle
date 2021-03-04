@@ -6,7 +6,7 @@ using namespace std;
 Console_draw::Console_draw(ostream& os, istream& is): os(os), is(is)
 {
     string s;
-    ifstream in("/Users/karimvafin/Documents/Repositories/MIPT/Console_battle/console.txt");
+    ifstream in("F:\\MIPT\\1st level\\Chapter 2\\IT\\C++\\Console_battle\\console.txt");
 
     while (getline(in, s))
     {
@@ -35,7 +35,7 @@ Console_draw::Console_draw(ostream& os, istream& is): os(os), is(is)
 
 void Console_draw::print(const string& name) const
 {
-    this->os << this->massages.find(name)<<endl;
+    this->os << this->massages.find(name);
 }
 
 bool Console_draw::set_hello_hat() const
@@ -50,6 +50,15 @@ bool Console_draw::set_hello_hat() const
 void Console_draw::set_player_type() const
 {
     this->print("выбор игрока");
+}
+
+void Console_draw::set_cpravka() const{
+    this->print("справка по командам");
+}
+
+void Console_draw::set_duel() const
+{
+    this->print("дуэль");
 }
 
 void Console_draw::set_goodbye() const
@@ -73,15 +82,29 @@ void Console_draw::read()
     getline(this->is, this->command);
 }
 
-void Console_draw::read_random_symbol() const
+bool Console_draw::read_random_symbol() const
 {
-    (this->is).get();
+    char c;
+    (this->is).get(c);
+    if (c == '\n') return false;
+    else return true;
 }
 
 string Console_draw::read_massage()
 {
     while(console_command()) {}
     return this->command;
+}
+
+string Console_draw::read_massage_about_player()
+{
+    string s = this->read_massage();
+    while (s != "1" && s != "2")
+    {
+        this->print("некор кмнд");
+        s = this->read_massage();
+    }
+    return s;
 }
 
 void Console_draw::set_player(Player* player1)
@@ -92,4 +115,83 @@ void Console_draw::set_player(Player* player1)
 void Console_draw::set_monster(class monster* monster1)
 {
     this->monster = monster1;
+}
+
+bool Console_draw::drawback(DATA_BOX* data)
+{
+    if (!data) {this->print("некор кмнд"); return false;};
+    switch (data->event_type)
+    {
+        case (12): {
+            this->print("ход и");
+            this->print("кубик");
+            this->os << data->dice_data <<endl;
+            this->print("ув защиты и");
+            this->os << data->int_data << endl;
+            delete data;
+            break;
+        }
+        case (11): {
+            this->print("ход и");
+            this->print("кубик");
+            this->os << data->dice_data <<endl;
+            this->print("пробитие м");
+            this->print("урон м");
+            this->os <<" "<< data->int_data << endl;
+            delete data;
+            break;
+        }
+        case (13): {
+            this->print("ход и");
+            this->print("кубик");
+            this->os << data->dice_data <<endl;
+            this->print("критическое м");
+            this->os << data->int_data << endl;
+            delete data;
+            break;
+        }
+        case (10): {
+            this->print("ход и");
+            this->print("кубик");
+            this->os << data->dice_data <<endl;
+            this->print("непробитие м");
+            delete data;
+            break;
+        }
+        case (21):{
+            this->os << "Ход "; this->os << monster->get_name() <<endl;
+            this->print("пробитие и");
+            this->os <<"Бросок "<< data->dice_data << " против защиты героя "<<player->get_protection()<<endl;
+            this->print("урон и");
+            this->os <<" "<< data->int_data<<endl;
+            delete data;
+            break;
+        }
+        case (20):{
+            this->os << "Ход "; this->os << monster->get_name() <<endl;
+            this->print("непробитие и");
+            this->os <<"Бросок "<< data->dice_data << " против защиты героя "<<player->get_protection()<<endl;
+            delete data;
+            break;
+        }
+        case (30): {
+            this->print("пор");
+            this->os << monster->get_hp() << endl;
+            delete data;
+            break;
+        }
+        case (31): {
+            this->print("поб");
+            this->os << monster->get_hp() << endl;
+            delete data;
+            break;
+        }
+        case (32): {
+            this->print("нич");
+            this->os << monster->get_hp() << endl;
+            delete data;
+            break;
+        }
+    }
+    return true;
 }

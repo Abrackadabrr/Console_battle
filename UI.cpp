@@ -3,6 +3,7 @@
 #include <iostream>
 #include "warrior.h"
 #include "dragon.h"
+#include "help_classes.h"
 
 UI::UI()
 {
@@ -46,63 +47,71 @@ int UI::d20()
     return (rand()%20 + 1);
 }
 
-void UI::read_player_massage(string str)
+DATA_BOX* UI::read_player_massage(string str)
 {
+    DATA_BOX* data = nullptr;
     if (str == "Защита" || str == "защита")
     {
-        std::cout << "Кидаем кубик..." << std::endl;
         int q = this->d3();
         Player->set_update_protection(q);
-        std::cout << "Ваша защита увеличилась на " << q << std::endl;
+        data = new DATA_BOX(q, Player->get_protection(), 12);
     }
     if (str == "Атака" || str == "атака")
     {
-        std::cout << "Кидаем кубик..." << std::endl;
         int a = this->d20();
         if (a >= monster->get_protection())
         {
-            std::cout << "Вам выпало " << a << ". Защита монстра преодолена" << std::endl;
-            if (a < 4)
+
+            if (this->d20() < 4)
             {
-                std::cout << "Критический удар!" << std::endl;
                 monster->set_damage(2 * Player->get_strength());
+                data = new DATA_BOX(a,2* Player->get_strength(),13);
             }
-            else
+            else {
                 monster->set_damage(Player->get_strength());
+                data = new DATA_BOX(a, Player->get_strength(), 11);
+            }
         }
         else
-            std::cout << "Вам выпало " << a << ". Защита монстра не преодолена" << std::endl;
+            data = new DATA_BOX(a,0,10);
     }
+    return data;
 }
 
-void UI::monster_attack()
+DATA_BOX* UI::monster_attack()
 {
+    DATA_BOX* data = nullptr;
     int b = this->d20();
     if (b >= Player->get_protection())
     {
         Player->set_damage(monster->get_strength());
-        std::cout << "Монстр нанес вам " << monster->get_strength() << " урона" << std::endl;
+        data = new DATA_BOX(b, monster->get_strength(), 21);
         Player->set_start_properties();
     }
     else
     {
-        std::cout << "Монстр не смог пробить вашу защиту" << std::endl;
+        data = new DATA_BOX(b, 0, 20);
         Player->set_start_properties();
     }
-
+    return data;
 }
 
 void UI::update()
 {
-    if (!Player->ALIVE())
+    DATA_BOX* data = nullptr;
+    if (!Player->ALIVE() && monster->ALIVE())
     {
-        std::cout << "Ваш герой умер! Вы проиграли" << std::endl;
-        std::cout << "У монстра осталось " << monster->get_hp() << " здоровья" << std::endl;
         finished = true;
+        data = new DATA_BOX(0,0, 30);
     }
-    if (!monster->ALIVE())
+    if (!monster->ALIVE() && Player->ALIVE())
     {
-        std::cout << "Вы победили монстра!" << std::endl;
+        finished = true;
+        data = new DATA_BOX(0,0, 31);
+    }
+    if (!monster->ALIVE() && !Player->ALIVE())
+    {
+        data = new DATA_BOX(0,0, 32);
         finished = true;
     }
 }

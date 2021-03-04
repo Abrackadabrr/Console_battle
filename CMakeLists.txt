@@ -21,4 +21,6 @@ add_executable(Console_battle
         UI.cpp
         UI.h
         warrior.cpp
-        warrior.h)
+        warrior.h
+        help_classes.cpp
+        help_classes.h)

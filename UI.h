@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "monster.h"
 #include <string>
-
+#include "help_classes.h"
 class UI {
 private:
     monster* monster; // поинтер на монстра
@@ -11,8 +11,8 @@ private:
 public:
     UI(); // делает клassное присваивание как на сегодняшней лекции в референсы
     ~UI();
-    void read_player_massage(string str); // берет и чекает сообщение, которое отправил игрок
-    void monster_attack();
+    DATA_BOX* read_player_massage(string str); // берет и чекает сообщение, которое отправил игрок
+    DATA_BOX* monster_attack();
     void update(); // проверяем, умер кто то или нет (закончилась игра или нет)
     int d3();
     int d20();
@@ -20,5 +20,3 @@ public:
     class monster* create_monster();
     bool is_finished();
 }; 
-
-//
