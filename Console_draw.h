@@ -1,4 +1,4 @@
-#include<string>
+#include <string>
 #include <iostream>
 #include "monster.h"
 #include "Player.h"
@@ -29,8 +29,10 @@ public:
     void set_player_type() const;
     void set_goodbye() const;
 
-    void set_duelers(Player* player1);
+    void set_player(Player* player1);
+    void set_monster(class monster* monster1);
 
     string read_massage();
+
 
 };

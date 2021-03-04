@@ -6,7 +6,7 @@
 
 warrior::warrior(string name)
 {
-    this->hp = 100;
+    this->hp = 70;
     this->protection = 10;
     this->update_of_protection = 3;
     this->strength = 10;

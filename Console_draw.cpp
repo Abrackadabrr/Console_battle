@@ -1,12 +1,12 @@
 #include "Console_draw.h"
-#include<string>
+#include <string>
 #include <fstream>
 using namespace std;
 
 Console_draw::Console_draw(ostream& os, istream& is): os(os), is(is)
 {
     string s;
-    ifstream in("F:\\MIPT\\1st level\\Chapter 2\\IT\\C++\\Console_battle\\console.txt");
+    ifstream in("/Users/karimvafin/Documents/Repositories/MIPT/Console_battle/console.txt");
 
     while (getline(in, s))
     {
@@ -84,7 +84,12 @@ string Console_draw::read_massage()
     return this->command;
 }
 
-void Console_draw::set_duelers(Player* player1)
+void Console_draw::set_player(Player* player1)
 {
     this->player = player1;
+}
+
+void Console_draw::set_monster(class monster* monster1)
+{
+    this->monster = monster1;
 }

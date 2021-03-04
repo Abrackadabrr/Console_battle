@@ -1,18 +1,6 @@
 #include "monster.h"
 #include <iostream>
 
-monster::monster()
-{
-    this->alive = true;
-    this->update_of_damage = 0;
-    this->name = "LABA";
-    cout << "Monster "<< this->get_name()<< " is created" << endl;
-    hp = 100;
-    protection = 10;
-    update_of_damage = 3;
-    strength = 13;
-}
-
 int monster::get_hp() const
 {
     return (this->hp);

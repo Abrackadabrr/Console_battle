@@ -1,3 +1,6 @@
+#ifndef CONSOLE_BATTLE_PLAYER_H
+#define CONSOLE_BATTLE_PLAYER_H
+
 #include <string>
 using namespace  std;
 class Player {
@@ -9,7 +12,6 @@ protected:
 
     bool alive;
     string name;
-    void set_start_properties();
 
 public:
 
@@ -18,7 +20,9 @@ public:
     int get_strength () const;
     string get_name() const;
     bool ALIVE();
-
+    void set_start_properties();
     void set_damage(int damage);                                // получаем урон в размере damage
     void set_update_protection(int upd);                        // увеличивает защиту на update_of_protection
 };
+
+#endif //CONSOLE_BATTLE_PLAYER_H

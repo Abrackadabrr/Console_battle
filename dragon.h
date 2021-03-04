@@ -9,7 +9,7 @@
 class dragon: public monster
 {
 public:
-    
+    dragon();
 };
 
 
