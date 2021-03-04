@@ -2,9 +2,10 @@
 #include "Player.h"
 #include <iostream>
 #include "Console_draw.h"
+#include "random.cpp"
+#include "time.h"
 
-int main() {
-
-    Console_draw consoleDraw;
-    consoleDraw.set_hello_hat();
+int main()
+{
+   srand(time(NULL));
 }
