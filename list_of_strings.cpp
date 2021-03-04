@@ -30,7 +30,7 @@ void listt::print()
     return;
 }
 
-unsigned int listt::size()
+unsigned int listt::size() const
 {
     uzzel* sfl = this -> start;
     unsigned int size = 0;
@@ -62,12 +62,12 @@ listt::~listt()
     this -> clear();
 }
 
-string listt::find(string name)
+string listt::find(string name) const
 {
     uzzel* sfl = this -> start;
     int counter_iter = 1;
     unsigned size = this->size();
-    while (!(sfl->name == name) and counter_iter <= size)
+    while (!(sfl->name == name) && counter_iter <= size)
     {
         sfl = (sfl)->next;
         counter_iter ++;

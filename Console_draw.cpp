@@ -3,7 +3,7 @@
 #include <fstream>
 using namespace std;
 
-Console_draw::Console_draw()
+Console_draw::Console_draw(ostream& os, istream& is): os(os), is(is)
 {
     string s;
     ifstream in("F:\\MIPT\\1st level\\Chapter 2\\IT\\C++\\Console_battle\\console.txt");
@@ -17,45 +17,74 @@ Console_draw::Console_draw()
             string s2 = s.substr(pos+1);
             for (int i = 0; i < s2.length(); i++)
             {
-                if (s2[i] == 'n') s2[i] = '\n';
+                if (s2[i] == 'p') s2[i] = '\n';
             }
             massages.push_back(s1, s2);
         }
     }
     in.close();
 
-    start[0] = "приветствие";
-    start[1] = "правила";
-    start[2] = "начать";
+    this->start[0] = "приветствие";
+    this->start[1] = "правила";
+    this->start[2] = "начать";
 
-    players[0] = "выбор игрока";
-    players[1] = "воин";
-    players[2] = "волшебник";
-
+    this->console_commands[0] = "справка по командам";
+    this->console_commands[1] = "инфо";
+    this->console_commands[2] = "справка по героям";
 }
 
-void Console_draw::print(string& name)
+void Console_draw::print(const string& name) const
 {
-    cout << this->massages.find(name)<<endl;
+    this->os << this->massages.find(name)<<endl;
 }
 
-void Console_draw::set_hello_hat()
+bool Console_draw::set_hello_hat() const
 {
-    cout << endl;
+    this->os  << endl;
     for(int i = 0; i < 3; i++){
-        cout << this->massages.find(start[i])<<endl;
+        this->print(start[i]);
     }
+    return true;
 }
 
-void Console_draw::set_player_type()
+void Console_draw::set_player_type() const
 {
-    cout << endl;
-    for(int i = 0; i < 3; i++){
-        cout << this->massages.find(players[i])<<endl;
-    }
+    this->print("выбор игрока");
 }
 
-void Console_draw::set_goodbye()
+void Console_draw::set_goodbye() const
 {
-    cout << this->massages.find("выход")<<endl;
+    this->print("выход");
+}
+
+bool Console_draw::console_command()
+{
+    this->read();
+    for (int i = 0; i < 3; i ++) if (this->command == this->console_commands[i]) {
+        this->print(this->console_commands[i]);
+        return true;
+        }
+    return false;
+}
+
+void Console_draw::read()
+{
+    this->os << this->massages.find("ввод");
+    getline(this->is, this->command);
+}
+
+void Console_draw::read_random_symbol() const
+{
+    (this->is).get();
+}
+
+string Console_draw::read_massage()
+{
+    while(console_command()) {}
+    return this->command;
+}
+
+void Console_draw::set_duelers(Player* player1)
+{
+    this->player = player1;
 }

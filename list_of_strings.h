@@ -29,9 +29,9 @@ public:
 
     void print();
 
-    unsigned int size();
+    unsigned int size() const;
 
-    string find(string name);
+    string find(string name) const;
 
     void clear(); //delete all elements (interface function, work function is private)
 
