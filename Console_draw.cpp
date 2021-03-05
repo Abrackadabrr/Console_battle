@@ -60,7 +60,7 @@ void Console_draw::set_cpravka() const{
     this->print("СПРАВКА К");
     for (int i = 0; i < player->get_amount_of_actions(); i ++)
     {
-        if(player->warr) this->print("КРИТ УДАР");
+        if(player->warr == "warrior") this->print("КРИТ УДАР");
     }
 }
 
@@ -141,6 +141,7 @@ void Console_draw::set_player(Player* player1)
 void Console_draw::set_monster(class monster* monster1)
 {
     this->monster = monster1;
+    this->print("спавн монстр"); this->os << " " << monster->get_name()<<endl;
 }
 
 bool Console_draw::drawback(DATA_BOX* data)
@@ -197,24 +198,6 @@ bool Console_draw::drawback(DATA_BOX* data)
             this->os << "Ход "; this->os << monster->get_name() <<endl;
             this->print("непробитие и");
             this->os <<"Бросок "<< data->dice_data << " против защиты героя "<<player->get_protection()<<endl;
-            delete data;
-            break;
-        }
-        case (30): {
-            this->print("пор");
-            this->os << monster->get_hp() << endl;
-            delete data;
-            break;
-        }
-        case (31): {
-            this->print("поб");
-            this->os << monster->get_hp() << endl;
-            delete data;
-            break;
-        }
-        case (32): {
-            this->print("нич");
-            this->os << monster->get_hp() << endl;
             delete data;
             break;
         }

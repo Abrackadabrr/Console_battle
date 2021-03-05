@@ -34,7 +34,10 @@ Player* UI::create_player(string s)
 
 monster* UI::create_monster()
 {
-    this->monster = new troll;
+    if (d20() > 10)
+        this->monster = new troll;
+    else
+        this->monster = new dragon;
     return this->monster;
 }
 
@@ -62,7 +65,7 @@ DATA_BOX* UI::read_player_massage(string str)
         if (a >= monster->get_protection())
         {
 
-            if (this->d20() < 4 && Player->warr)
+            if (this->d20() < 4 && Player->warr == "warrior")
             {
                 monster->set_damage(2 * Player->get_strength());
                 data = new DATA_BOX(a,2* Player->get_strength(),13);

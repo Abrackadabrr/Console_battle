@@ -18,7 +18,7 @@ protected:
 
 
 public:
-    bool warr;
+    string warr;
 
     Player();
     int get_hp () const;
