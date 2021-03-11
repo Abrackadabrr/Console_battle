@@ -11,15 +11,15 @@ add_executable(Console_battle
         monster.cpp
         monster.h
         main.cpp
-        Console_draw.cpp
-        Console_draw.h
+        INOUT.cpp
+        INOUT.h
         console.txt
         list_of_strings.cpp
         list_of_strings.h
         dragon.cpp
         dragon.h
-        UI.cpp
-        UI.h
+        GLogic.cpp
+        GLogic.h
         warrior.cpp
         warrior.h
         help_classes.cpp

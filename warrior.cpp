@@ -6,7 +6,7 @@
 
 warrior::warrior(string name)
 {
-    this->warr = "warrior";
+    this->type = "warrior";
     this->hp = 70;
     this->protection = 10;
     this->update_of_protection = 3;

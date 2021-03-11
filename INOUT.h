@@ -5,7 +5,7 @@
 #include "list_of_strings.h"
 #include "help_classes.h"
 using namespace std;
-class Console_draw {
+class INOUT {
 private:
     Player* player;
     monster* monster;
@@ -19,12 +19,13 @@ private:
     bool console_command();
     void read();
     void print(const string& name) const;
-
+    void load_monster_commands(string s);
+    void load_player_commands(string s);
     string command;
 
 public:
 
-    Console_draw(ostream& os, istream& is);
+    INOUT(ostream& os, istream& is);
     bool set_hello_hat() const;
     bool read_random_symbol() const;
     void set_player_type() const;

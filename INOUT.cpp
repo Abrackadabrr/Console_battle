@@ -1,9 +1,9 @@
-#include "Console_draw.h"
+#include "INOUT.h"
 #include <string>
 #include <fstream>
 using namespace std;
 
-Console_draw::Console_draw(ostream& os, istream& is): os(os), is(is)
+INOUT::INOUT(ostream& os, istream& is): os(os), is(is)
 {
     string s;
     ifstream in("F:\\MIPT\\1st level\\Chapter 2\\IT\\C++\\Console_battle\\console.txt");
@@ -32,12 +32,58 @@ Console_draw::Console_draw(ostream& os, istream& is): os(os), is(is)
     this->console_commands[1] = "инфо";
 }
 
-void Console_draw::print(const string& name) const
+void INOUT::load_player_commands(string type)
+{
+    string s;
+    ifstream in;
+    if (type == "warrior")
+        in = ifstream ("F:\\MIPT\\1st level\\Chapter 2\\IT\\C++\\Console_battle\\warrior.txt");
+
+    while (getline(in, s))
+    {
+        auto pos = s.find("|");
+        if (pos != string::npos)
+        {
+            string s1 = s.substr(0,pos);
+            string s2 = s.substr(pos+1);
+            for (int i = 0; i < s2.length(); i++)
+            {
+                if (s2[i] == 'p') s2[i] = '\n';
+            }
+            massages.push_back(s1, s2);
+        }
+    }
+    in.close();
+}
+
+void INOUT::load_monster_commands(string type)
+{
+    string s;
+    ifstream in("F:\\MIPT\\1st level\\Chapter 2\\IT\\C++\\Console_battle\\console.txt");
+
+    while (getline(in, s))
+    {
+        auto pos = s.find("|");
+        if (pos != string::npos)
+        {
+            string s1 = s.substr(0,pos);
+            string s2 = s.substr(pos+1);
+            for (int i = 0; i < s2.length(); i++)
+            {
+                if (s2[i] == 'p') s2[i] = '\n';
+            }
+            massages.push_back(s1, s2);
+        }
+    }
+    in.close();
+}
+
+void INOUT::print(const string& name) const
 {
     this->os << this->massages.find(name);
 }
 
-bool Console_draw::set_hello_hat() const
+bool INOUT::set_hello_hat() const
 {
     this->os  << endl;
     for(int i = 0; i < 3; i++){
@@ -46,12 +92,12 @@ bool Console_draw::set_hello_hat() const
     return true;
 }
 
-void Console_draw::set_player_type() const
+void INOUT::set_player_type() const
 {
     this->print("выбор игрока");
 }
 
-void Console_draw::set_cpravka() const{
+void INOUT::set_cpravka() const{
     this->os << "Справка по комнадам и способностям для вашего героя" <<endl;
     this->os << endl;
     this->print("ЗАЩИТА");
@@ -60,21 +106,21 @@ void Console_draw::set_cpravka() const{
     this->print("СПРАВКА К");
     for (int i = 0; i < player->get_amount_of_actions(); i ++)
     {
-        if(player->warr == "warrior") this->print("КРИТ УДАР");
+        if(player->type == "warrior") this->print("КРИТ УДАР");
     }
 }
 
-void Console_draw::set_duel() const
+void INOUT::set_duel() const
 {
     this->print("дуэль");
 }
 
-void Console_draw::set_goodbye() const
+void INOUT::set_goodbye() const
 {
     this->print("выход");
 }
 
-bool Console_draw::console_command()
+bool INOUT::console_command()
 {
     bool b = false;
     this->read();
@@ -102,13 +148,13 @@ bool Console_draw::console_command()
     return b;
 }
 
-void Console_draw::read()
+void INOUT::read()
 {
     this->os << this->massages.find("ввод");
     getline(this->is, this->command);
 }
 
-bool Console_draw::read_random_symbol() const
+bool INOUT::read_random_symbol() const
 {
     char c;
     (this->is).get(c);
@@ -116,13 +162,13 @@ bool Console_draw::read_random_symbol() const
     else return true;
 }
 
-string Console_draw::read_massage()
+string INOUT::read_massage()
 {
     while(console_command()) {}
     return this->command;
 }
 
-string Console_draw::read_massage_about_player()
+string INOUT::read_massage_about_player()
 {
     string s = this->read_massage();
     while (s != "1" && s != "2")
@@ -133,18 +179,19 @@ string Console_draw::read_massage_about_player()
     return s;
 }
 
-void Console_draw::set_player(Player* player1)
+void INOUT::set_player(Player* player1)
 {
     this->player = player1;
+    this->load_player_commands(player1->type);
 }
 
-void Console_draw::set_monster(class monster* monster1)
+void INOUT::set_monster(class monster* monster1)
 {
     this->monster = monster1;
     this->print("спавн монстр"); this->os << " " << monster->get_name()<<endl;
 }
 
-bool Console_draw::drawback(DATA_BOX* data)
+bool INOUT::drawback(DATA_BOX* data)
 {
     if (!data) {this->print("некор кмнд"); return false;};
     switch (data->event_type)
@@ -155,7 +202,6 @@ bool Console_draw::drawback(DATA_BOX* data)
             this->os << data->dice_data <<endl;
             this->print("ув защиты и");
             this->os << data->int_data << endl;
-            delete data;
             break;
         }
         case (11): {
@@ -165,7 +211,6 @@ bool Console_draw::drawback(DATA_BOX* data)
             this->print("пробитие м");
             this->print("урон м");
             this->os <<" "<< data->int_data << endl;
-            delete data;
             break;
         }
         case (13): {
@@ -174,7 +219,6 @@ bool Console_draw::drawback(DATA_BOX* data)
             this->os << data->dice_data <<endl;
             this->print("критическое м");
             this->os << data->int_data << endl;
-            delete data;
             break;
         }
         case (10): {
@@ -182,7 +226,6 @@ bool Console_draw::drawback(DATA_BOX* data)
             this->print("кубик");
             this->os << data->dice_data <<endl;
             this->print("непробитие м");
-            delete data;
             break;
         }
         case (21):{
@@ -191,21 +234,20 @@ bool Console_draw::drawback(DATA_BOX* data)
             this->os <<"Бросок "<< data->dice_data << " против защиты героя "<<player->get_protection()<<endl;
             this->print("урон и");
             this->os <<" "<< data->int_data<<endl;
-            delete data;
             break;
         }
         case (20):{
             this->os << "Ход "; this->os << monster->get_name() <<endl;
             this->print("непробитие и");
             this->os <<"Бросок "<< data->dice_data << " против защиты героя "<<player->get_protection()<<endl;
-            delete data;
             break;
         }
     }
+    if (data) delete data;
     return true;
 }
 
-void Console_draw::is_end(DATA_BOX* data)
+void INOUT::is_end(DATA_BOX* data)
 {
     if (!data) return;
     switch (data->event_type)
@@ -218,7 +260,6 @@ void Console_draw::is_end(DATA_BOX* data)
         }
         case (31): {
             this->print("поб");
-            this->os << monster->get_hp() << endl;
             delete data;
             break;
         }

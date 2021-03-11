@@ -1,38 +1,37 @@
-#include "UI.h"
+#include "GLogic.h"
 #include <cstdlib>
-#include <iostream>
 #include "warrior.h"
 #include "dragon.h"
 #include "help_classes.h"
 #include_next "troll.h"
-UI::UI()
+GLogic::GLogic()
 {
     monster = nullptr;
     Player = nullptr;
     finished = false;
 }
 
-UI::~UI()
+GLogic::~GLogic()
 {
     delete monster;
     delete Player;
 }
 
-bool UI::is_finished()
+bool GLogic::is_finished()
 {
     return this->finished;
 }
 
-Player* UI::create_player(string s)
+Player* GLogic::create_player(string s)
 {
     if (s == "1")
     {
-        this->Player = new warrior("Женя");
+        this->Player = new warrior("Warrior");
         return this->Player;
     }
 }
 
-monster* UI::create_monster()
+monster* GLogic::create_monster()
 {
     if (d20() > 10)
         this->monster = new troll;
@@ -41,16 +40,16 @@ monster* UI::create_monster()
     return this->monster;
 }
 
-int UI::d3() {
+int GLogic::d3() {
     return (rand()%3 + 1);
 }
 
-int UI::d20()
+int GLogic::d20()
 {
     return (rand()%20 + 1);
 }
 
-DATA_BOX* UI::read_player_massage(string str)
+DATA_BOX* GLogic::read_player_massage(string str)
 {
     DATA_BOX* data = nullptr;
     if (str == "Защита" || str == "защита")
@@ -65,7 +64,7 @@ DATA_BOX* UI::read_player_massage(string str)
         if (a >= monster->get_protection())
         {
 
-            if (this->d20() < 4 && Player->warr == "warrior")
+            if (this->d20() < 4 && Player->type == "warrior")
             {
                 monster->set_damage(2 * Player->get_strength());
                 data = new DATA_BOX(a,2* Player->get_strength(),13);
@@ -81,7 +80,7 @@ DATA_BOX* UI::read_player_massage(string str)
     return data;
 }
 
-DATA_BOX* UI::monster_attack()
+DATA_BOX* GLogic::monster_attack()
 {
     DATA_BOX* data = nullptr;
     int b = this->d20();
@@ -97,7 +96,7 @@ DATA_BOX* UI::monster_attack()
     return data;
 }
 
-DATA_BOX* UI::update()
+DATA_BOX* GLogic::update()
 
 {
     DATA_BOX* data = nullptr;
