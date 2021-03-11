@@ -13,3 +13,18 @@ troll::troll() {
     alive = true;
     name = "Лаба по терме";
 }
+
+DATA_BOX* troll::attack(Player* player){
+    int b = player->d20();
+    DATA_BOX* data;
+    if (b >= player->get_protection())
+    {
+        player->set_damage(this->get_strength());
+        data = new DATA_BOX(b, this->get_strength(), 20001);
+    }
+    else
+    {
+        data = new DATA_BOX(b, 0, 20000);
+    }
+    return data;
+}

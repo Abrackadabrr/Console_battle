@@ -1,7 +1,8 @@
 #ifndef CONSOLE_BATTLE_MONSTER_H
 #define CONSOLE_BATTLE_MONSTER_H
-
+#include "help_classes.h"
 #include <string>
+#include "Player.h"
 using namespace  std;
 class monster {
 protected:
@@ -24,6 +25,8 @@ public:
 
     void set_damage(int damage);                            // получаем урон в размере damage
     void set_update_strength(int upd);                      // увеличивает атаку на upd
+
+    virtual DATA_BOX* attack(Player* player) = 0;
 };
 
 #endif //CONSOLE_BATTLE_MONSTER_H

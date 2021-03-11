@@ -9,6 +9,7 @@
 class troll: public monster {
 public:
     troll();
+    DATA_BOX* attack(Player* player) override;
 };
 
 

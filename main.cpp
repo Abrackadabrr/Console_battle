@@ -21,7 +21,7 @@ int main()
     while(!logic.is_finished())
     {
         if (console.drawback(logic.read_player_massage(console.read_massage()))) {
-            console.drawback(logic.monster_attack());
+            console.drawback(logic.monster_step());
             console.is_end(logic.update());
         }
     }

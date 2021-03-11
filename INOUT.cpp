@@ -97,7 +97,8 @@ void INOUT::set_player_type() const
     this->print("выбор игрока");
 }
 
-void INOUT::set_cpravka() const{
+void INOUT::set_cpravka() const
+{
     this->os << "Справка по комнадам и способностям для вашего героя" <<endl;
     this->os << endl;
     this->print("ЗАЩИТА");
@@ -122,13 +123,13 @@ void INOUT::set_goodbye() const
 
 bool INOUT::console_command()
 {
-    bool b = false;
+    bool is_console_command = false;
     this->read();
     for (int i = 0; i < 2; i ++) if (this->command == this->console_commands[i])
     {
-        b = true;
+        is_console_command = true;
     }
-    if (b)
+    if (is_console_command)
     {
         if (this->command == "инфо")
         {
@@ -145,7 +146,7 @@ bool INOUT::console_command()
             this->set_cpravka();
         }
     }
-    return b;
+    return is_console_command;
 }
 
 void INOUT::read()
@@ -181,6 +182,7 @@ string INOUT::read_massage_about_player()
 
 void INOUT::set_player(Player* player1)
 {
+    if (player1) this->os << "ВАРНИНГ БЛЯТЬ";
     this->player = player1;
     this->load_player_commands(player1->type);
 }
@@ -196,7 +198,7 @@ bool INOUT::drawback(DATA_BOX* data)
     if (!data) {this->print("некор кмнд"); return false;};
     switch (data->event_type)
     {
-        case (12): {
+        case (10002): {
             this->print("ход и");
             this->print("кубик");
             this->os << data->dice_data <<endl;
@@ -204,7 +206,7 @@ bool INOUT::drawback(DATA_BOX* data)
             this->os << data->int_data << endl;
             break;
         }
-        case (11): {
+        case (10001): {
             this->print("ход и");
             this->print("кубик");
             this->os << data->dice_data <<endl;
@@ -213,7 +215,7 @@ bool INOUT::drawback(DATA_BOX* data)
             this->os <<" "<< data->int_data << endl;
             break;
         }
-        case (13): {
+        case (10100): {
             this->print("ход и");
             this->print("кубик");
             this->os << data->dice_data <<endl;
@@ -221,14 +223,14 @@ bool INOUT::drawback(DATA_BOX* data)
             this->os << data->int_data << endl;
             break;
         }
-        case (10): {
+        case (10000): {
             this->print("ход и");
             this->print("кубик");
             this->os << data->dice_data <<endl;
             this->print("непробитие м");
             break;
         }
-        case (21):{
+        case (20001):{
             this->os << "Ход "; this->os << monster->get_name() <<endl;
             this->print("пробитие и");
             this->os <<"Бросок "<< data->dice_data << " против защиты героя "<<player->get_protection()<<endl;
@@ -236,7 +238,7 @@ bool INOUT::drawback(DATA_BOX* data)
             this->os <<" "<< data->int_data<<endl;
             break;
         }
-        case (20):{
+        case (20000):{
             this->os << "Ход "; this->os << monster->get_name() <<endl;
             this->print("непробитие и");
             this->os <<"Бросок "<< data->dice_data << " против защиты героя "<<player->get_protection()<<endl;

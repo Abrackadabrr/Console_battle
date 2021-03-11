@@ -3,7 +3,7 @@
 #include "warrior.h"
 #include "dragon.h"
 #include "help_classes.h"
-#include_next "troll.h"
+#include "troll.h"
 GLogic::GLogic()
 {
     monster = nullptr;
@@ -29,6 +29,7 @@ Player* GLogic::create_player(string s)
         this->Player = new warrior("Warrior");
         return this->Player;
     }
+    return nullptr;
 }
 
 monster* GLogic::create_monster()
@@ -49,55 +50,28 @@ int GLogic::d20()
     return (rand()%20 + 1);
 }
 
-DATA_BOX* GLogic::read_player_massage(string str)
+DATA_BOX* GLogic::read_player_massage(string massage)
 {
     DATA_BOX* data = nullptr;
-    if (str == "Защита" || str == "защита")
+    if (massage == "Защита" || massage == "защита")
     {
-        int q = this->d3();
-        Player->set_update_protection(q);
-        data = new DATA_BOX(q, Player->get_protection(), 12);
+        data = Player->set_update_protection();
     }
-    if (str == "Атака" || str == "атака")
+    if (massage == "Атака" || massage == "атака")
     {
-        int a = this->d20();
-        if (a >= monster->get_protection())
-        {
-
-            if (this->d20() < 4 && Player->type == "warrior")
-            {
-                monster->set_damage(2 * Player->get_strength());
-                data = new DATA_BOX(a,2* Player->get_strength(),13);
-            }
-            else {
-                monster->set_damage(Player->get_strength());
-                data = new DATA_BOX(a, Player->get_strength(), 11);
-            }
-        }
-        else
-            data = new DATA_BOX(a,0,10);
+        data = Player->attack(this->monster);
     }
     return data;
 }
 
-DATA_BOX* GLogic::monster_attack()
+DATA_BOX* GLogic::monster_step()
 {
     DATA_BOX* data = nullptr;
-    int b = this->d20();
-    if (b >= Player->get_protection())
-    {
-        Player->set_damage(monster->get_strength());
-        data = new DATA_BOX(b, monster->get_strength(), 21);
-    }
-    else
-    {
-        data = new DATA_BOX(b, 0, 20);
-    }
+    monster->attack(this->Player);
     return data;
 }
 
 DATA_BOX* GLogic::update()
-
 {
     DATA_BOX* data = nullptr;
     if (!Player->ALIVE() && monster->ALIVE())

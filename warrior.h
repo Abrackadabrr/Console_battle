@@ -9,6 +9,7 @@
 class warrior: public Player{
 public:
     warrior(string name);
+    DATA_BOX* attack(monster *monster) override;
 };
 
 

@@ -11,8 +11,8 @@ private:
 public:
     GLogic(); // делает клassное присваивание как на сегодняшней лекции в референсы
     ~GLogic();
-    DATA_BOX* read_player_massage(string str); // берет и чекает сообщение, которое отправил игрок
-    DATA_BOX* monster_attack();
+    DATA_BOX* read_player_massage(string massage); // берет и чекает сообщение, которое отправил игрок
+    DATA_BOX* monster_step();
     DATA_BOX* update(); // проверяем, умер кто то или нет (закончилась игра или нет)
     int d3();
     int d20();

@@ -1,6 +1,7 @@
 #ifndef CONSOLE_BATTLE_PLAYER_H
 #define CONSOLE_BATTLE_PLAYER_H
-
+#include "monster.h"
+#include "help_classes.h"
 #include <string>
 using namespace  std;
 class Player {
@@ -15,8 +16,6 @@ protected:
     bool alive;
     string name;
 
-
-
 public:
     string type;
 
@@ -29,7 +28,12 @@ public:
     bool ALIVE();
     void set_start_properties();
     void set_damage(int damage);                                // получаем урон в размере damage
-    void set_update_protection(int upd);                        // увеличивает защиту на update_of_protection
+
+    int d3();
+    int d20();
+
+    virtual DATA_BOX* attack(monster* monster) = 0;
+    DATA_BOX* set_update_protection();
 };
 
 #endif //CONSOLE_BATTLE_PLAYER_H

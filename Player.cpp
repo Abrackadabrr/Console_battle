@@ -30,10 +30,14 @@ void Player::set_damage(int damage)
     this->hp -= damage;
 }
 
-void Player::set_update_protection(int upd)
+DATA_BOX* Player::set_update_protection()
 {
+    DATA_BOX* data;
+    int upd = this->d3();
     this->update_of_protection = upd;
     this->protection += update_of_protection;
+    data = new DATA_BOX(upd, this->get_protection(), 10002);
+    return data;
 }
 
 void Player::set_start_properties()
@@ -41,7 +45,6 @@ void Player::set_start_properties()
     this->protection -= update_of_protection;
     this->update_of_protection = 0;
 }
-
 
 bool Player::ALIVE()
 {
@@ -56,3 +59,10 @@ string Player::get_name() const
     return this->name;
 }
 
+int Player::d3() {
+    return (rand()%3 + 1);
+}
+
+int Player::d20() {
+    return (rand()%3 + 1);
+}

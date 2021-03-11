@@ -10,6 +10,7 @@ class dragon: public monster
 {
 public:
     dragon();
+    DATA_BOX* attack(Player* player) override;
 };
 
 
