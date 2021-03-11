@@ -15,16 +15,16 @@ warrior::warrior(string name)
     this->name = name;
 }
 
-DATA_BOX* warrior::attack(monster *monster) {
+DATA_BOX* warrior::attack(monster* monster1) {
     DATA_BOX* data = nullptr;
 
     int a = this->d20();
-    if (a >= monster->get_protection()) {
+    if (a >= monster1->get_protection()) {
         if (this->d20() < 4) {
-            monster->set_damage(2 * this->get_strength());
+            monster1->set_damage(2 * this->get_strength());
             data = new DATA_BOX(a, 2 * this->get_strength(), 10100);
         } else {
-            monster->set_damage(this->get_strength());
+            monster1->set_damage(this->get_strength());
             data = new DATA_BOX(a, this->get_strength(), 10001);
         }
     }

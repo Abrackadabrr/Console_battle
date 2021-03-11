@@ -38,6 +38,8 @@ void INOUT::load_player_commands(string type)
     ifstream in;
     if (type == "warrior")
         in = ifstream ("F:\\MIPT\\1st level\\Chapter 2\\IT\\C++\\Console_battle\\warrior.txt");
+    if (type == "wizard")
+        in = ifstream ("F:\\MIPT\\1st level\\Chapter 2\\IT\\C++\\Console_battle\\wizard.txt");
 
     while (getline(in, s))
     {
@@ -59,7 +61,11 @@ void INOUT::load_player_commands(string type)
 void INOUT::load_monster_commands(string type)
 {
     string s;
-    ifstream in("F:\\MIPT\\1st level\\Chapter 2\\IT\\C++\\Console_battle\\console.txt");
+    ifstream in;
+    if (type == "dragon")
+        //in = ifstream ("F:\\MIPT\\1st level\\Chapter 2\\IT\\C++\\Console_battle\\warrior.txt");
+    if (type == "troll")                                                                                    // пути к соотв файлам со строками
+       //in = ifstream ("F:\\MIPT\\1st level\\Chapter 2\\IT\\C++\\Console_battle\\wizard.txt");
 
     while (getline(in, s))
     {
@@ -182,7 +188,7 @@ string INOUT::read_massage_about_player()
 
 void INOUT::set_player(Player* player1)
 {
-    if (player1) this->os << "ВАРНИНГ БЛЯТЬ";
+    if (!player1) this->os << "ВАРНИНГ БЛЯТЬ";
     this->player = player1;
     this->load_player_commands(player1->type);
 }
@@ -190,6 +196,7 @@ void INOUT::set_player(Player* player1)
 void INOUT::set_monster(class monster* monster1)
 {
     this->monster = monster1;
+    this->load_monster_commands(monster1->type);
     this->print("спавн монстр"); this->os << " " << monster->get_name()<<endl;
 }
 

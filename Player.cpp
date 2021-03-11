@@ -64,5 +64,5 @@ int Player::d3() {
 }
 
 int Player::d20() {
-    return (rand()%3 + 1);
+    return (rand()%20 + 1);
 }

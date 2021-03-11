@@ -13,9 +13,10 @@ dragon::dragon()
 
     alive = true;
     name = "dragon";
+    this->type = "dragon";
 }
 
-DATA_BOX* dragon::attack(Player* player){
+DATA_BOX* dragon::attack_(Player* player) {
     int b = player->d20();
     DATA_BOX* data;
     if (b >= player->get_protection())

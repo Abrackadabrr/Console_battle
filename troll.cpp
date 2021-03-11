@@ -1,7 +1,3 @@
-//
-// Created by Карим Вафин on 04.03.2021.
-//
-
 #include "troll.h"
 
 troll::troll() {
@@ -11,10 +7,11 @@ troll::troll() {
     strength = 11;
 
     alive = true;
-    name = "Лаба по терме";
+    name = "troll";
+    this->type = "troll";
 }
 
-DATA_BOX* troll::attack(Player* player){
+DATA_BOX* troll::attack_(Player* player){
     int b = player->d20();
     DATA_BOX* data;
     if (b >= player->get_protection())

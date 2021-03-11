@@ -3,6 +3,7 @@
 #include "help_classes.h"
 #include <string>
 #include "Player.h"
+
 using namespace  std;
 class monster {
 protected:
@@ -16,6 +17,8 @@ protected:
     void set_start_properties();                               // восстанавливаем динамические параметры
 
 public:
+    string type;
+
     monster() {}
     int get_hp () const;
     int get_protection () const;
@@ -26,7 +29,7 @@ public:
     void set_damage(int damage);                            // получаем урон в размере damage
     void set_update_strength(int upd);                      // увеличивает атаку на upd
 
-    virtual DATA_BOX* attack(Player* player) = 0;
+    virtual DATA_BOX* attack_(class Player* player) = 0;
 };
 
 #endif //CONSOLE_BATTLE_MONSTER_H

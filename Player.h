@@ -3,6 +3,7 @@
 #include "monster.h"
 #include "help_classes.h"
 #include <string>
+
 using namespace  std;
 class Player {
 protected:
@@ -32,7 +33,7 @@ public:
     int d3();
     int d20();
 
-    virtual DATA_BOX* attack(monster* monster) = 0;
+    virtual DATA_BOX* attack(class monster* monster1) = 0;
     DATA_BOX* set_update_protection();
 };
 

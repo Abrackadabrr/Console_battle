@@ -25,4 +25,6 @@ add_executable(Console_battle
         help_classes.cpp
         help_classes.h
         troll.cpp
-        troll.h)
+        troll.h
+        wizard.cpp
+        wizard.h)

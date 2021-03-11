@@ -1,6 +1,7 @@
 #include "GLogic.h"
 #include <cstdlib>
 #include "warrior.h"
+#include "wizard.h"
 #include "dragon.h"
 #include "help_classes.h"
 #include "troll.h"
@@ -27,6 +28,11 @@ Player* GLogic::create_player(string s)
     if (s == "1")
     {
         this->Player = new warrior("Warrior");
+        return this->Player;
+    }
+    if (s == "2")
+    {
+        this->Player = new wizard("Wizard");
         return this->Player;
     }
     return nullptr;
@@ -67,7 +73,7 @@ DATA_BOX* GLogic::read_player_massage(string massage)
 DATA_BOX* GLogic::monster_step()
 {
     DATA_BOX* data = nullptr;
-    monster->attack(this->Player);
+    data = monster->attack_(this->Player);
     return data;
 }
 
