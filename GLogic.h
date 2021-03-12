@@ -1,10 +1,10 @@
 #include "Player.h"
-#include "monster.h"
+#include "Monster.h"
 #include <string>
 #include "help_classes.h"
 class GLogic {
 private:
-    monster* monster; // поинтер на монстра
+    Monster* monster; // поинтер на монстра
     Player* Player; // поинтер на игрока
     bool finished; // поле означает, идет игровой цикл или заканчивается
     // через поинтеры GLogic будет "общаться" монстра и игрока, выставляя им различные праматры
@@ -17,6 +17,6 @@ public:
     int d3();
     int d20();
     class Player* create_player(string);
-    class monster* create_monster();
+    class Monster* create_monster();
     bool is_finished();
 }; 

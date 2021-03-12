@@ -1,6 +1,6 @@
 #ifndef CONSOLE_BATTLE_PLAYER_H
 #define CONSOLE_BATTLE_PLAYER_H
-#include "monster.h"
+#include "Monster.h"
 #include "help_classes.h"
 #include <string>
 
@@ -33,7 +33,7 @@ public:
     int d3();
     int d20();
 
-    virtual DATA_BOX* attack(class monster* monster1) = 0;
+    virtual DATA_BOX* attack(Monster* monster1) = 0;
     DATA_BOX* set_update_protection();
 };
 

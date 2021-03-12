@@ -1,6 +1,6 @@
 #include <string>
 #include <iostream>
-#include "monster.h"
+#include "Monster.h"
 #include "Player.h"
 #include "list_of_strings.h"
 #include "help_classes.h"
@@ -8,7 +8,7 @@ using namespace std;
 class INOUT {
 private:
     Player* player;
-    monster* monster;
+    Monster* monster;
     listt massages;
     string start[3];
     string info[3];
@@ -34,7 +34,7 @@ public:
     void set_duel() const;
 
     void set_player(Player* player1);
-    void set_monster(class monster* monster1);
+    void set_monster(Monster* monster1);
 
     string read_massage();
     string read_massage_about_player();

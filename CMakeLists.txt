@@ -8,8 +8,8 @@ include_directories(.)
 add_executable(Console_battle
         Player.cpp
         Player.h
-        monster.cpp
-        monster.h
+        Monster.cpp
+        Monster.h
         main.cpp
         INOUT.cpp
         INOUT.h

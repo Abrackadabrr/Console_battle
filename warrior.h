@@ -6,7 +6,7 @@
 class warrior: public Player{
 public:
     warrior(string name);
-    DATA_BOX* attack(monster* monster1) override;
+    DATA_BOX* attack(Monster* monster1) override;
 };
 
 

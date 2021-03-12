@@ -15,7 +15,7 @@ warrior::warrior(string name)
     this->name = name;
 }
 
-DATA_BOX* warrior::attack(monster* monster1) {
+DATA_BOX* warrior::attack(Monster* monster1) {
     DATA_BOX* data = nullptr;
 
     int a = this->d20();

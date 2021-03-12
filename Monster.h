@@ -5,7 +5,7 @@
 #include "Player.h"
 
 using namespace  std;
-class monster {
+class Monster {
 protected:
     int hp;
     int protection;
@@ -19,7 +19,7 @@ protected:
 public:
     string type;
 
-    monster() {}
+    Monster() {}
     int get_hp () const;
     int get_protection () const;
     int get_strength () const;
@@ -29,7 +29,7 @@ public:
     void set_damage(int damage);                            // получаем урон в размере damage
     void set_update_strength(int upd);                      // увеличивает атаку на upd
 
-    virtual DATA_BOX* attack_(class Player* player) = 0;
+    virtual DATA_BOX* attack_(Player* player) = 0;
 };
 
 #endif //CONSOLE_BATTLE_MONSTER_H

@@ -193,7 +193,7 @@ void INOUT::set_player(Player* player1)
     this->load_player_commands(player1->type);
 }
 
-void INOUT::set_monster(class monster* monster1)
+void INOUT::set_monster(class Monster* monster1)
 {
     this->monster = monster1;
     this->load_monster_commands(monster1->type);

@@ -38,7 +38,7 @@ Player* GLogic::create_player(string s)
     return nullptr;
 }
 
-monster* GLogic::create_monster()
+Monster* GLogic::create_monster()
 {
     if (d20() > 10)
         this->monster = new troll;

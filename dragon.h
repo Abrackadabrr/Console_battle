@@ -4,9 +4,9 @@
 
 #ifndef CONSOLE_BATTLE_DRAGON_H
 #define CONSOLE_BATTLE_DRAGON_H
-#include "monster.h"
+#include "Monster.h"
 
-class dragon: public monster
+class dragon: public Monster
 {
 public:
     dragon();

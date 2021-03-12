@@ -10,7 +10,7 @@ wizard::wizard(string name) {
     this->name = name;
 }
 
-DATA_BOX* wizard:: attack(monster* monster1){
+DATA_BOX* wizard:: attack(Monster* monster1){
     DATA_BOX* data = nullptr;
     int a = this->d20();
     if (a >= monster1->get_protection()) {
